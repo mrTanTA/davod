@@ -1,1 +1,1 @@
-bash <(curl -s https://raw.githubusercontent.com/wizwizdev/wizwizxui-timebot/main/wizwiz.sh)
+bash <(curl -s https://raw.githubusercontent.com/mrTanTA/davod/main/irooni.sh)
