@@ -143,14 +143,14 @@ if [ ! -d "/root/condoov" ]; then
 
     ASAS="$"
 
-    echo "${ASAS}user = 'root';" >> /root/condoov/dbrootwizwiz.txt
-    echo "${ASAS}pass = '${randomdbpasstxt}';" >> /root/condoov/dbrootwizwiz.txt
+    echo "${ASAS}user = 'root';" >> /root/condoov1/dbrootwizwiz.txt
+    echo "${ASAS}pass = '${randomdbpasstxt}';" >> /root/condoov1/dbrootwizwiz.txt
     #echo "${ASAS}paths = '$RANDOM_CODE';" >> /root/condoov/dbrootwizwiz.txt
     
     sleep 1
 
-    passs=$(cat /root/condoov/dbrootwizwiz.txt | grep '$pass' | cut -d"'" -f2)
-    userrr=$(cat /root/condoov/dbrootwizwiz.txt | grep '$user' | cut -d"'" -f2)
+    passs=$(cat /root/condoov1/dbrootwizwiz.txt | grep '$pass' | cut -d"'" -f2)
+    userrr=$(cat /root/condoov1/dbrootwizwiz.txt | grep '$user' | cut -d"'" -f2)
 
     sudo mysql -u $userrr -p$passs -e "alter user '$userrr'@'localhost' identified with mysql_native_password by '$passs';FLUSH PRIVILEGES;"
 
@@ -190,7 +190,7 @@ DOMAIN_NAME="$domainname"
 # WILDCARD_DOMAIN="*.$wildcarddomain"
 
 # update cron
-PATHS=$(cat /root/condoov/dbrootwizwiz.txt | grep '$path' | cut -d"'" -f2)
+PATHS=$(cat /root/condoov1/dbrootwizwiz.txt | grep '$path' | cut -d"'" -f2)
 (crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/davood-timebot/settings/messagewizwiz.php >/dev/null 2>&1") | sort - | uniq - | crontab -
 (crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/davood-timebot/settings/rewardReport.php >/dev/null 2>&1") | sort - | uniq - | crontab -
 (crontab -l ; echo "* * * * * curl https://${DOMAIN_NAME}/davood-timebot/settings/warnusers.php >/dev/null 2>&1") | sort - | uniq - | crontab -
@@ -238,7 +238,7 @@ wait
 
 echo " "
 
-ROOT_PASSWORD=$(cat /root/condoov/dbrootwizwiz.txt | grep '$pass' | cut -d"'" -f2)
+ROOT_PASSWORD=$(cat /root/condoov1/dbrootwizwiz.txt | grep '$pass' | cut -d"'" -f2)
 ROOT_USER="root"
 echo "SELECT 1" | mysql -u$ROOT_USER -p$ROOT_PASSWORD 2>/dev/null
 
