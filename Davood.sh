@@ -129,14 +129,14 @@ echo "Folder created successfully!"
 wait
 
 
-if [ ! -d "/root/condoov" ]; then
+if [ ! -d "/root/condoov1" ]; then
 
-    sudo mkdir /root/condoov
+    sudo mkdir /root/condoov1
     
     sleep 1
     
-    touch /root/condoov/dbrootwizwiz.txt
-    sudo chmod -R 777 /root/condoov/dbrootwizwiz.txt
+    touch /root/condoov1/dbrootwizwiz.txt
+    sudo chmod -R 777 /root/condoov1/dbrootwizwiz.txt
     sleep 1
     
     randomdbpasstxt=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-30)
@@ -145,7 +145,7 @@ if [ ! -d "/root/condoov" ]; then
 
     echo "${ASAS}user = 'root';" >> /root/condoov1/dbrootwizwiz.txt
     echo "${ASAS}pass = '${randomdbpasstxt}';" >> /root/condoov1/dbrootwizwiz.txt
-    #echo "${ASAS}paths = '$RANDOM_CODE';" >> /root/condoov/dbrootwizwiz.txt
+    #echo "${ASAS}paths = '$RANDOM_CODE';" >> /root/condoov1/dbrootwizwiz.txt
     
     sleep 1
 
