@@ -56,7 +56,7 @@ done
 
 echo -e "\n\e[92mPackages Installed Continuing ...\033[0m\n"
 
-randomdbpasstxt69=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-20)
+randomdbpasstxt69="Root"
 
 echo 'phpmyadmin phpmyadmin/dbconfig-install boolean true' | debconf-set-selections
 echo 'phpmyadmin phpmyadmin/app-password-confirm password $randomdbpasstxt69' | debconf-set-selections
@@ -139,7 +139,7 @@ if [ ! -d "/root/conirooni" ]; then
     sudo chmod -R 777 /root/conirooni/dbrootwizwiz.txt
     sleep 1
     
-    randomdbpasstxt=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-30)
+    randomdbpasstxt="root"
 
     ASAS="$"
 
@@ -245,9 +245,9 @@ if [ $? -eq 0 ]; then
 
 wait
 
-    randomdbpass=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-22)
+    randomdbpass="root"
 
-    randomdbdb=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-22)
+    randomdbdb="root"
 
     if [[ $(mysql -u root -p$ROOT_PASSWORD -e "SHOW DATABASES LIKE 'irooni'") ]]; then
         clear
@@ -319,7 +319,7 @@ wait
         sleep 1
 
         curl -F "url=https://${YOUR_DOMAIN}/wizwizxui-timebot/bot.php" "https://api.telegram.org/bot${YOUR_BOT_TOKEN}/setWebhook"
-        MESSAGE="✅ The wizwiz bot has been successfully installed! @wizwizch"
+        MESSAGE="✅ The Irooni bot has been successfully installed!"
         curl -s -X POST "https://api.telegram.org/bot${YOUR_BOT_TOKEN}/sendMessage" -d chat_id="${YOUR_CHAT_ID}" -d text="$MESSAGE"
         
         
