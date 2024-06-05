@@ -28,75 +28,6 @@ sleep 5
 echo -e "\e[92mThe server was successfully updated ...\033[0m\n"
 
 
-PKG=(
-    lamp-server^
-    libapache2-mod-php 
-    mysql-server 
-    apache2 
-    php-mbstring 
-    php-zip 
-    php-gd 
-    php-json 
-    php-curl 
-)
-
-for i in "${PKG[@]}"
-do
-    dpkg -s $i &> /dev/null
-    if [ $? -eq 0 ]; then
-        echo "$i is already installed"
-    else
-        apt install $i -y
-        if [ $? -ne 0 ]; then
-            echo "Error installing $i"
-            exit 1
-        fi
-    fi
-done
-
-echo -e "\n\e[92mPackages Installed Continuing ...\033[0m\n"
-
-randomdbpasstxt69=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-20)
-
-echo 'phpmyadmin phpmyadmin/dbconfig-install boolean true' | debconf-set-selections
-echo 'phpmyadmin phpmyadmin/app-password-confirm password $randomdbpasstxt69' | debconf-set-selections
-echo 'phpmyadmin phpmyadmin/mysql/admin-pass password $randomdbpasstxt69' | debconf-set-selections
-echo 'phpmyadmin phpmyadmin/mysql/app-pass password $randomdbpasstxt69' | debconf-set-selections
-echo 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2' | debconf-set-selections
-sudo apt-get install phpmyadmin -y
-sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
-sudo a2enconf phpmyadmin.conf
-sudo systemctl restart apache2
-
-wait
-
-sudo apt-get install -y php-soap
-sudo apt-get install libapache2-mod-php
-
-sudo systemctl enable mysql.service
-sudo systemctl start mysql.service
-sudo systemctl enable apache2
-sudo systemctl start apache2
-
-echo -e "\n\e[92m Setting Up UFW...\033[0m\n"
-
-ufw allow 'Apache'
-
-sudo systemctl restart apache2
-
-echo -e "\n\e[92mInstalling ...\033[0m\n"
-
-sleep 1
-
-sudo apt-get install -y git
-sudo apt-get install -y wget
-sudo apt-get install -y unzip
-sudo apt install curl -y
-sudo apt-get install -y php-ssh2
-sudo apt-get install -y libssh2-1-dev libssh2-1
-
-sudo systemctl restart apache2.service
-
 wait
 
 git clone https://github.com/wizwizdev/wizwizxui-timebot.git /var/www/html/davood-timebot
@@ -139,7 +70,7 @@ if [ ! -d "/root/condoov1" ]; then
     sudo chmod -R 777 /root/condoov1/dbrootwizwiz.txt
     sleep 1
     
-    randomdbpasstxt=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-30)
+    randomdbpasstxt="root"
 
     ASAS="$"
 
@@ -238,7 +169,7 @@ wait
 
 echo " "
 
-ROOT_PASSWORD=$(cat /root/condoov1/dbrootwizwiz.txt | grep '$pass' | cut -d"'" -f2)
+ROOT_PASSWORD="root"
 ROOT_USER="root"
 echo "SELECT 1" | mysql -u$ROOT_USER -p$ROOT_PASSWORD 2>/dev/null
 
@@ -247,9 +178,9 @@ if [ $? -eq 0 ]; then
 
 wait
 
-    randomdbpass=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-22)
+    randomdbpass="root"
 
-    randomdbdb=$(openssl rand -base64 10 | tr -dc 'a-zA-Z0-9' | cut -c1-22)
+    randomdbdb="root"
 
     if [[ $(mysql -u root -p$ROOT_PASSWORD -e "SHOW DATABASES LIKE 'davood'") ]]; then
         clear
