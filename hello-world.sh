@@ -75,8 +75,8 @@ sudo ufw allow 'rathole'
 sleep 0.5
 
 # Allow Range ports for X-ray Core
-sudo ufw allow 9000:9200
-sleep 1
+sudo ufw allow 9000:9200/tcp
+sleep 0.5
 # Allow specific ports for Marzban
 sudo ufw allow 8000
 sleep 0.5
@@ -94,7 +94,7 @@ sleep 0.5
 clear
 			sleep 0.5
 			echo -e "\n\e[92mThe script was successfully Instaled! \033[0m\n"
-			echo -e "\n\e[92mYou can open port manually! Use: ufw allow x \033[0m\n"
+			echo -e "\n\e[92mYou can open port manually! Use: ufw allow port \033[0m\n"
 			echo ""
 			ask_reboot
 			
