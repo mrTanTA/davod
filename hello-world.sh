@@ -75,7 +75,8 @@ sudo ufw allow 'rathole'
 sleep 0.5
 
 # Allow Range ports for X-ray Core
-sudo ufw allow 9000:9200/tcp
+ufw allow 9000:9200/tcp
+ufw allow 9000:9200/udp
 sleep 0.5
 # Allow specific ports for Marzban
 sudo ufw allow 8000
