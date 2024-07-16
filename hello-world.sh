@@ -17,7 +17,7 @@
 					
 	# Ask Reboot
 ask_reboot() {
-    yellow_msg 'Reboot now? (Recommended) (y/n)'
+    echo "Reboot now? (Recommended) (y/n)"
     echo 
     while true; do
         read choice
@@ -68,7 +68,7 @@ sudo ufw allow 'OpenSSH'
 sudo ufw allow 'OpenVPN'
 sudo ufw allow 'ssh'
 sudo ufw allow 'rathole'
-sudo ufw allow $SSH_PORT
+
 
 sleep 0.5
 
