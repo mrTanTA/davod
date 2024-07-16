@@ -66,7 +66,9 @@ sudo ufw allow 'Nginx Full'
 sudo ufw allow 'Nginx'
 sudo ufw allow 'OpenSSH'
 sudo ufw allow 'OpenVPN'
-sudo ufw allow 'ssh'
+sudo ufw allow ssh
+sudo ufw allow 2222
+sudo ufw allow 2222/tcp
 sudo ufw allow 'rathole'
 
 
@@ -79,14 +81,15 @@ sleep 1
 sudo ufw allow 8000
 sleep 0.5
 
-# Reload UFW to apply the changes
-sudo ufw reload
-sleep 0.5
 
 # Enable UFW 
 sudo ufw Enable
 sleep 0.5
+
+# Reload UFW to apply the changes
 sudo ufw reload
+sleep 0.5
+
 
 clear
 			sleep 0.5
