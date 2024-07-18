@@ -6,7 +6,6 @@
 sleep 0.5
 
 		
-
 	sudo apt install socat
 wait
 		curl https://get.acme.sh | sh
@@ -40,4 +39,4 @@ wait
 
 else
 			  echo -e "\e[41mCancel the Project.\033[0m\n"
-			fi
+fi 
